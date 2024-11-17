@@ -99,7 +99,7 @@ POST `/api/ai/question` with a body like:
 }
 ```
 
-## 🟡  Add blog post context to openai (You are here!)
+## ✅ Add blog post context to openai
 
 
 ### 8. Add a context to the route
@@ -145,3 +145,25 @@ So our `messages` array now looks like this:
 ```
 
 Now our route is aware of a single blog post and can answer questions about it!
+
+## 🟡 A component for interacting with one of our routes (You are here!)
+
+Now that the route is complete, let's create a component that will allow us to interact with it. We will create a new component `components/ai/question.tsx` that will take a `slug` as a prop and allow us to ask questions about that blog post.
+
+We will use 4 states:
+
+- `question` (string): The user's question input.
+- `response` (string | null): The AI-generated response to the user's question.
+- `loading` (boolean): Indicates whether the form submission is in progress.
+- `error` (string | null): Error message if the form submission fails.
+
+State is a fundamental concept in React. It allows you to store and update the data that determines the content of your components. The default state is an object, but it can be a string, number, boolean, or any other JavaScript data type. In our case (which is why we're passing stuff to our useState-s):
+
+- `question` by default is an empty string.
+- `response` by default is null.
+- `loading` by default is false.
+- `error` by default is null.
+
+We then use those states to display the form and the response.
+
+For us, the error state for example is very useful: we can conditionally render an error message if `error` is not null.
