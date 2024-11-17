@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     const { slug, question } = await request.json();
     const blogPost = getBlogPost(slug);
 
-    const SYSTEM_PROMPT = `You are an expert in article summary. Answer a question about the following article: ${blogPost}. Reference something in the post to support your answer.`;
+    const SYSTEM_PROMPT = `You are an expert in article summary. Answer a question about the following article: ${blogPost?.content}. Reference something in the post to support your answer.`;
 
     let response;
 
