@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
 import { baseUrl } from 'app/sitemap'
-
+import Question from 'app/components/ai/question'
 export async function generateStaticParams() {
   let posts = getBlogPosts()
 
@@ -82,6 +82,8 @@ export default function Blog({ params }) {
           }),
         }}
       />
+      <Question slug={post.slug} />
+
       <h1 className="title font-semibold text-2xl tracking-tighter">
         {post.metadata.title}
       </h1>
