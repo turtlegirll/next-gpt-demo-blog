@@ -31,7 +31,7 @@ export async function POST(request: Request) {
         });
       response = extractModelMessage(modelResponse);
     }
-    return new Response(response, { headers: jsonHeaders });
+    return new Response(JSON.stringify({ answer: response }), { headers: jsonHeaders });
   } catch (error) {
     console.error('Error:', error);
     return new Response(JSON.stringify({ error: error.message }), {
