@@ -146,7 +146,7 @@ So our `messages` array now looks like this:
 
 Now our route is aware of a single blog post and can answer questions about it!
 
-## 🟡 A component for interacting with one of our routes (You are here!)
+## ✅ A component for interacting with one of our routes (You are here!)
 
 Now that the route is complete, let's create a component that will allow us to interact with it. We will create a new component `components/ai/question.tsx` that will take a `slug` as a prop and allow us to ask questions about that blog post.
 
@@ -167,3 +167,5 @@ State is a fundamental concept in React. It allows you to store and update the d
 We then use those states to display the form and the response.
 
 For us, the error state for example is very useful: we can conditionally render an error message if `error` is not null.
+
+## All done!
