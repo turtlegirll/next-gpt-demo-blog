@@ -1,6 +1,6 @@
 import { getBlogPost } from "app/blog/utils";
-import { openaiClient } from "app/lib/openai/client"; 
-import { extractModelMessage } from "app/lib/openai/utils";
+import { openaiClient } from "../../lib/openai/client"; 
+import { extractModelMessage } from "../../lib/openai/utils";
 
 export async function POST(request: Request) {
   const jsonHeaders = { 'Content-Type': 'application/json' };
