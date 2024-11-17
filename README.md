@@ -26,7 +26,7 @@ pnpm install
 pnpm dev
 ```
 
-## 🟡 Setup: openai (You are here!)
+## ✅  Setup: openai
 
 ### 1. Create the `.env` file from `.env.example` 
 
@@ -98,3 +98,50 @@ POST `/api/ai/question` with a body like:
     "question": "What is VIM?"
 }
 ```
+
+## 🟡  Add blog post context to openai (You are here!)
+
+
+### 8. Add a context to the route
+
+Here's the fun part! Let's add some context. We will start with something simple: let's make our route answer a question about one of our blog posts.
+
+If we look at the structre of blog posts from the template, each post has a `slug` and `content`. 
+We can use the `slug` to identify the post and use the content as the context.
+
+```json
+{
+    "metadata": {
+        "title": "Spaces vs. Tabs: The Indentation Debate Continues",
+        "publishedAt": "2024-04-08",
+        "summary": "Explore the enduring debate between using spaces and tabs for code indentation, and why this choice matters more than you might think."
+    },
+    "slug": "spaces-vs-tabs",
+    "content": "..."
+}
+
+```
+
+We will add another route `ai/question-blog-post` that will take a `slug` and a `question` and return the response.
+
+If we check blog/utils, there's already a `getBlobPosts` method. Let's create a new method `getBlogPost` off of that will take a `slug` and return the post.
+
+```typescript   
+export function getBlogPost(slug: string) {
+  let posts = getBlogPosts()
+  return posts.find((post) => post.slug === slug)
+}
+```
+
+We can now use that in our route and pass it as part of a system prompt. (HINT: when using this particular model, the entire conversation is passed with every request)
+
+So our `messages` array now looks like this:
+
+```typescript
+[
+    { role: 'system', content: "our system prompt with the blog post" },
+    { role: 'user', content: "our question" }
+]
+```
+
+Now our route is aware of a single blog post and can answer questions about it!
