@@ -99,7 +99,7 @@ curl -X POST http://localhost:3000/api/ai/question -H "Content-Type: application
 
 Make the route handler pass a blog post content to OpenAI, so that we can ask questions about a specific blog post.
 
-## 🟡 Create a component (You are here!)
+## ✅ Create a component
 
 Create a component in `app/components/ai/question.tsx` that will allow you to ask questions about a blog post. The component should:
 - have a text input for the question
@@ -110,3 +110,5 @@ Then use it in `app/blog/[slug].tsx`.
 
 https://nextjs.org/docs/app/building-your-application/rendering/client-components
 https://nextjs.org/docs/app/api-reference/components/form
+
+## All done! 🎉
