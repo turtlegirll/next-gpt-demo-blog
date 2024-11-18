@@ -88,3 +88,9 @@ Update the `app/ai/question/route.ts` route handler:
 - expect a JSON body with a `question` key
 - and use the AzureOpenAI client you created earlier to call OpenAI with a question
 - return the response from OpenAI as a `message` key in the response
+
+Test it by sending a POST request to `http://localhost:3000/ai/question` with a JSON body containing a question:
+
+```bash
+curl -X POST http://localhost:3000/api/ai/question -H "Content-Type: application/json" -d '{"question": "what is VIM?"}'
+````
