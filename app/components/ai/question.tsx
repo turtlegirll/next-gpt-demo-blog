@@ -2,10 +2,10 @@
 import { useState } from 'react';
 
 interface QuestionProps {
-    slug: string;
+    postSlug: string;
 }
 
-const Question = ({ slug }: QuestionProps) => {
+const Question = ({ postSlug }: QuestionProps) => {
     const [question, setQuestion] = useState('');
     const [response, setResponse] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
@@ -18,10 +18,9 @@ const Question = ({ slug }: QuestionProps) => {
         setError(null);
 
         try {
-            const res = await fetch('/ai/question-blog-post', {
+            const res = await fetch('/ai/question', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ slug, question }),
+                body: JSON.stringify({ postSlug, question }),
             });
 
             if (!res.ok) {
@@ -29,7 +28,7 @@ const Question = ({ slug }: QuestionProps) => {
             }
 
             const data = await res.json();
-            setResponse(data.answer || 'No response received');
+            setResponse(data.message || 'No response received');
         } catch (err: any) {
             setError(err.message || 'An unexpected error occurred');
         } finally {

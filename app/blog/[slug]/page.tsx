@@ -82,8 +82,7 @@ export default function Blog({ params }) {
           }),
         }}
       />
-      <Question slug={post.slug} />
-
+      <Question postSlug={post.slug} />
       <h1 className="title font-semibold text-2xl tracking-tighter">
         {post.metadata.title}
       </h1>
