@@ -80,7 +80,7 @@ Or, if you have Postman, you can use that to send a POST request to `http://loca
 }
 ```
 
-## 🟡 Call Azure OpenAI from route handler (You are here!)
+## ✅ Call Azure OpenAI from route handler
 
 Now that you have a route handler, you can call OpenAI from it.
 
@@ -94,3 +94,7 @@ Test it by sending a POST request to `http://localhost:3000/ai/question` with a 
 ```bash
 curl -X POST http://localhost:3000/api/ai/question -H "Content-Type: application/json" -d '{"question": "what is VIM?"}'
 ````
+
+## 🟡 Add article content to route handler (You are here!)
+
+Make the route handler pass a blog post content to OpenAI, so that we can ask questions about a specific blog post.
