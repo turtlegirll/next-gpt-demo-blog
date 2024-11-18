@@ -11,7 +11,6 @@
 
 ```bash
 git clone -b setup-initial-template git@github.com:evelynforkhands/next-gpt-demo-blog.git
-cd blog
 ```
 
 ### 2. Install dependencies
@@ -167,3 +166,5 @@ State is a fundamental concept in React. It allows you to store and update the d
 We then use those states to display the form and the response.
 
 For us, the error state for example is very useful: we can conditionally render an error message if `error` is not null.
+
+## All done!
