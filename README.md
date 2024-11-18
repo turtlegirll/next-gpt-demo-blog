@@ -62,7 +62,11 @@ https://yarnpkg.com/package?q=openai&name=openai
 
 ## 🟡 Create a route handler (You are here!)
 
-Create a route handler in `app/ai/question/route.ts`, allow POST requests, read the request body and return it.
+Create a route handler in `app/ai/question/route.ts`.
+- allow POST requests, 
+- parse the request body as JSON,
+- return a success or error response, with status codes and a message.
+
 
 https://nextjs.org/docs/app/building-your-application/routing/route-handlers#request-body
 
