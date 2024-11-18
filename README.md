@@ -60,7 +60,7 @@ use azure/identity to authenticate, passing the keys directly to the client is e
 https://yarnpkg.com/package?q=openai&name=openai
 
 
-## 🟡 Create a route handler (You are here!)
+## ✅ Create a route handler
 
 Create a route handler in `app/ai/question/route.ts`, allow POST requests, read the request body and return it.
 
@@ -79,3 +79,12 @@ Or, if you have Postman, you can use that to send a POST request to `http://loca
   "text": "Hello, World!"
 }
 ```
+
+## 🟡 Call Azure OpenAI from route handler (You are here!)
+
+Now that you have a route handler, you can call OpenAI from it.
+
+Update the `app/ai/question/route.ts` route handler:
+- expect a JSON body with a `question` key
+- and use the AzureOpenAI client you created earlier to call OpenAI with a question
+- return the response from OpenAI as a `message` key in the response
