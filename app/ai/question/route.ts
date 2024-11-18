@@ -1,3 +1,7 @@
+import { NextResponse } from "next/server"
+import { openaiClient } from "lib/openai/client"
+import { extractModelMessage } from "lib/utils"
+
 type SuccessResponse = {
     success: true,
     message: string,
@@ -10,20 +14,37 @@ type ErrorResponse = {
     status: number
 }
 
-import { NextResponse } from "next/server"
-
 export async function POST(request: Request) {
 
     let response: SuccessResponse | ErrorResponse;
 
     try {
-        const res = await request.json()
-        
-        response = {
-            success: true,
-            message: res,
-            status: 200
+        const { question } = await request.json()
+
+        let modelResponse = await openaiClient.chat.completions.create({
+            model: 'gpt-4o-mini',
+            messages: [
+              { role: 'user', content: JSON.stringify({ question }) },
+            ],
+          });
+
+        const modelMessage = extractModelMessage(modelResponse);
+
+        if (!modelMessage) {
+            response = {
+                success: false,
+                message: 'No message found in model response',
+                status: 500
+            }
         }
+        else {
+            response = {
+                success: true,
+                message: modelMessage,
+                status: 200
+            }
+        }
+        
     } catch (error) {
         response = {
             success: false,
