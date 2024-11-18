@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { openaiClient } from "lib/openai/client"
 import { extractModelMessage } from "lib/utils"
+import { getBlogPost } from "app/blog/utils"
 
 type SuccessResponse = {
     success: true,
@@ -19,14 +20,17 @@ export async function POST(request: Request) {
     let response: SuccessResponse | ErrorResponse;
 
     try {
-        const { question } = await request.json()
+        const { question, articleSlug } = await request.json()
+
+        const articleContent = getBlogPost(articleSlug)?.content;
 
         let modelResponse = await openaiClient.chat.completions.create({
             model: 'gpt-4o-mini',
             messages: [
-              { role: 'user', content: JSON.stringify({ question }) },
+                { role: 'system', content: `You are a world expert article summarizer. Answer a question about the following article: ${articleContent}. Reference it in your response.` },
+                { role: 'user', content: JSON.stringify({ question }) },
             ],
-          });
+        });
 
         const modelMessage = extractModelMessage(modelResponse);
 
@@ -44,7 +48,7 @@ export async function POST(request: Request) {
                 status: 200
             }
         }
-        
+
     } catch (error) {
         response = {
             success: false,
@@ -53,4 +57,4 @@ export async function POST(request: Request) {
         }
     }
     return NextResponse.json(response)
-  }
+}
