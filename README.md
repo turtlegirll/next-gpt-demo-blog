@@ -95,6 +95,18 @@ Test it by sending a POST request to `http://localhost:3000/ai/question` with a 
 curl -X POST http://localhost:3000/api/ai/question -H "Content-Type: application/json" -d '{"question": "what is VIM?"}'
 ````
 
-## 🟡 Add article content to route handler (You are here!)
+## ✅ Add article content to route handler
 
 Make the route handler pass a blog post content to OpenAI, so that we can ask questions about a specific blog post.
+
+## 🟡 Create a component (You are here!)
+
+Create a component in `app/components/ai/question.tsx` that will allow you to ask questions about a blog post. The component should:
+- have a text input for the question
+- have a button to submit the question
+- show the response from OpenAI, with formatting differences for a success or error response
+
+Then use it in `app/blog/[slug].tsx`.
+
+https://nextjs.org/docs/app/building-your-application/rendering/client-components
+https://nextjs.org/docs/app/api-reference/components/form
