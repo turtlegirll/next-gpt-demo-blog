@@ -2,10 +2,10 @@
 import { useState } from 'react';
 
 interface QuestionProps {
-    articleSlug: string;
+    postSlug: string;
 }
 
-const Question = ({ articleSlug }: QuestionProps) => {
+const Question = ({ postSlug }: QuestionProps) => {
     const [question, setQuestion] = useState('');
     const [response, setResponse] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
@@ -20,7 +20,7 @@ const Question = ({ articleSlug }: QuestionProps) => {
         try {
             const res = await fetch('/ai/question', {
                 method: 'POST',
-                body: JSON.stringify({ articleSlug, question }),
+                body: JSON.stringify({ postSlug, question }),
             });
 
             if (!res.ok) {
