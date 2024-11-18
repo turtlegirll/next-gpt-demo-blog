@@ -20,9 +20,9 @@ export async function POST(request: Request) {
     let response: SuccessResponse | ErrorResponse;
 
     try {
-        const { question, articleSlug } = await request.json()
+        const { question, postSlug } = await request.json()
 
-        const articleContent = getBlogPost(articleSlug)?.content;
+        const articleContent = getBlogPost(postSlug)?.content;
 
         let modelResponse = await openaiClient.chat.completions.create({
             model: 'gpt-4o-mini',
